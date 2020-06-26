@@ -75,12 +75,10 @@ function createGraph() {
     var gradientStroke = qtx.createLinearGradient(500, 0, 100, 0);
     var gradientBackground = qtx.createLinearGradient(0, 0, 0, 450);
 
-    gradientStroke.addColorStop(0, 'blue');
-    gradientStroke.addColorStop(0.2, 'red');
-    gradientStroke.addColorStop(0.4, 'green');
-    gradientStroke.addColorStop(0.6, 'yellow');
-    gradientStroke.addColorStop(0.8, 'orange');
-    gradientStroke.addColorStop(1, 'violet');
+    var colorStops = [0, 0.2, 0.4, 0.6, 0.8, 1];
+    for (var q = 0; q < colorStops.length; q++){
+      gradientStroke.addColorStop(colorStops[q], rgbArr[q]);
+    }
 
     var currentArr = rgbArr[j];
     var firstStr = currentArr.slice(0, (rgbArr[j].length - 1));
@@ -99,10 +97,8 @@ function createGraph() {
         datasets: [{
           label: parametersForTable[j],
           data: paramDataArr[j],
-          // backgroundColor: colorArr[j],
           backgroundColor: gradientBackground,
           borderColor: gradientStroke
-          // borderColor: colorArr[j],
         }]
       },
       options: {
@@ -130,7 +126,6 @@ function Parameters(nitrate, alkalinity, calcium, magnesium, salinity, temp) {
   this.nitrate = nitrate;
   this.alkalinity = alkalinity;
   this.calcium = calcium;
-  //Stretch Goal
   this.magnesium = magnesium;
   this.salinity = salinity;
   this.temp = temp;
